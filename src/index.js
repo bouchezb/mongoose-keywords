@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Query, SchemaTypes } from 'mongoose'
 
-const normalize = (value) => _.kebabCase(value).replace(/\-/g, ' ')
+const normalize = (value, path) => _.kebabCase(value).replace(/\-/g, ' ')
 
 const keywordsPlugin = (schema, {paths, field = 'keywords', transform = normalize} = {}) => {
   paths = paths && paths.map((p) => schema.path(p))
@@ -31,8 +31,8 @@ const keywordsPlugin = (schema, {paths, field = 'keywords', transform = normaliz
             this[field].addToSet(keyword)
           })
         } else {
-          oldValue && this[field].pull(transform(oldValue))
-          this[field].addToSet(transform(value))
+          oldValue && this[field].pull(transform(oldValue, path))
+          this[field].addToSet(transform(value, path))
         }
       }
 
