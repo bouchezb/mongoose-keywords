@@ -1,7 +1,7 @@
 {
-  "name": "mongoose-keywords",
-  "version": "0.4.0",
-  "description": "Mongoose plugin that recursively generates keywords for documents based on its fields",
+  "name": "@bouchezb/mongoose-keywords",
+  "version": "0.5.0",
+  "description": "Fork of project diegohaz/mongoose-keywords - Mongoose plugin that recursively generates keywords for documents based on its fields",
   "main": "dist/index.js",
   "files": [
     "bin/",
@@ -14,22 +14,22 @@
     "watch": "watch 'npm run build' src test",
     "test": "babel-node test/index.js | tspec",
     "prebuild": "npm run check -s && npm run clean -s",
-    "build": "babel --optional runtime src -d dist",
+    "build": "node ./node_modules/babel-cli/bin/babel.js --optional runtime src -d dist",
     "postbuild": "npm run test -s",
     "coverage": "babel-node node_modules/isparta/bin/isparta cover test/index.js",
     "coveralls": "npm run coverage -s && coveralls < coverage/lcov.info",
     "postcoveralls": "rimraf ./coverage",
     "prepublish": "npm run build -s",
     "deploy": "git pull --rebase origin master && git push origin master",
-    "patch": "npm version patch && npm publish",
-    "minor": "npm version minor && npm publish",
-    "major": "npm version major && npm publish",
+    "patch": "npm version patch && npm publish --access public",
+    "minor": "npm version minor && npm publish --access public",
+    "major": "npm version major && npm publish --access public",
     "postpublish": "git push origin master --follow-tags",
     "toc": "doctoc --github --title \"# Changelog\" CHANGELOG.md"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diegohaz/mongoose-keywords.git"
+    "url": "git+https://github.com/bouchezb/mongoose-keywords.git"
   },
   "keywords": [
     "keywords",
@@ -39,12 +39,12 @@
     "terms",
     "kebab"
   ],
-  "author": "Diego Haz <hazdiego@gmail.com>",
+  "author": "Benoit Bouchez <benbouchez@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diegohaz/mongoose-keywords/issues"
+    "url": "https://github.com/bouchezb/mongoose-keywords/issues"
   },
-  "homepage": "https://github.com/diegohaz/mongoose-keywords#readme",
+  "homepage": "https://github.com/bouchezb/mongoose-keywords#readme",
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
