@@ -26,7 +26,6 @@ const keywordsPlugin = (schema, {paths, field = '_keywords', transform = normali
       if (value === oldValue) return value
 
       const parsePath = (path, value) => {
-        console.log(path)
         if (path instanceof SchemaTypes.ObjectId) {
           value[field] && value[field].forEach((keyword) => {
             oldValue && oldValue[field] && this[field].pull(...oldValue[field])
