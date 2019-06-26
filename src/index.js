@@ -26,6 +26,7 @@ const keywordsPlugin = (schema, {paths, field = '_keywords', transform = normali
       if (value === oldValue) return value
 
       const parsePath = (path, value) => {
+        console.log(path)
         if (path instanceof SchemaTypes.ObjectId) {
           value[field] && value[field].forEach((keyword) => {
             oldValue && oldValue[field] && this[field].pull(...oldValue[field])
@@ -44,7 +45,7 @@ const keywordsPlugin = (schema, {paths, field = '_keywords', transform = normali
 
       if (path instanceof SchemaTypes.Array) {
         value.forEach((val) => {
-          parsePath(path.caster, val)
+          parsePath(path.caster.schema, val)
         })
       } else if (path.$isMongooseDocumentArray) {
         value.forEach((val) => {
